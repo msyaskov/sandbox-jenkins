@@ -6,18 +6,18 @@ pipeline {
         stage('Compile') {
             steps {
                 sh 'chmod +x ./mvnw'
-                sh './gradlew clean classes'
+                sh './mvnw clean compile'
             }
         }
         stage('Test') {
             steps {
-                sh './gradlew test'
+                sh './mvnw test'
                 junit '**/build/test-results/test/*.xml'
             }
         }
         stage('Build') {
             steps {
-                sh './gradlew war'
+                sh './mvnw package'
             }
         }
     }
