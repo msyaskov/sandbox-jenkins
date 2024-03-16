@@ -3,21 +3,53 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Set Executable Flag on Gradlew') {
+            steps {
+                sh 'chmod +x mvnw'
+            }
+        }
         stage('Compile') {
             steps {
-                sh 'chmod +x ./mvnw'
                 sh './mvnw clean compile'
+            }
+            post {
+                success {
+                    echo 'Компиляция прошла успешно.'
+                }
+                failure {
+                    echo 'Ошибка на этапе компиляции.'
+                }
             }
         }
         stage('Test') {
             steps {
                 sh './mvnw test'
-                junit '**/build/test-results/test/*.xml'
+            }
+            post {
+                success {
+                    echo 'Тестирование прошло успешно.'
+                }
+                failure {
+                    echo 'Ошибка на этапе тестирования.'
+                }
             }
         }
         stage('Build') {
             steps {
                 sh './mvnw package'
+            }
+            post {
+                success {
+                    echo 'Сборка прошла успешно.'
+                }
+                failure {
+                    echo 'Ошибка на этапе сборки.'
+                }
             }
         }
     }
