@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins
+    user: root
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./jenkins:/var/jenkins_home"
