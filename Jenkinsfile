@@ -3,11 +3,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Set Executable Flag on Gradlew') {
             steps {
                 sh 'chmod +x mvnw'

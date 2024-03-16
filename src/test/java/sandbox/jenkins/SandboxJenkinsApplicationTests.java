@@ -12,9 +12,9 @@ class SandboxJenkinsApplicationTests {
 
     }
 
-    @Test
-    void failTest() {
-        Assertions.assertTrue(false);
-    }
+//    @Test
+//    void failTest() {
+//        Assertions.assertTrue(false);
+//    }
 
 }
